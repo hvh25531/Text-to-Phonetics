@@ -1,0 +1,110 @@
+[
+    {
+        "name": "rmccue/requests",
+        "version": "v1.7.0",
+        "version_normalized": "1.7.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/rmccue/Requests.git",
+            "reference": "87932f52ffad70504d93f04f15690cf16a089546"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/rmccue/Requests/zipball/87932f52ffad70504d93f04f15690cf16a089546",
+            "reference": "87932f52ffad70504d93f04f15690cf16a089546",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2"
+        },
+        "require-dev": {
+            "requests/test-server": "dev-master"
+        },
+        "time": "2016-10-13T00:11:37+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Requests": "library/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "ISC"
+        ],
+        "authors": [
+            {
+                "name": "Ryan McCue",
+                "homepage": "http://ryanmccue.info"
+            }
+        ],
+        "description": "A HTTP library written in PHP, for human beings.",
+        "homepage": "http://github.com/rmccue/Requests",
+        "keywords": [
+            "curl",
+            "fsockopen",
+            "http",
+            "idna",
+            "ipv6",
+            "iri",
+            "sockets"
+        ]
+    },
+    {
+        "name": "gavinggordon/phonetictranscriber",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/gavinggordon/phonetictranscriber.git",
+            "reference": "29f2e67911be98c7add39feedddde833f13c5b5c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/gavinggordon/phonetictranscriber/zipball/29f2e67911be98c7add39feedddde833f13c5b5c",
+            "reference": "29f2e67911be98c7add39feedddde833f13c5b5c",
+            "shasum": ""
+        },
+        "require": {
+            "rmccue/requests": "^1.7"
+        },
+        "time": "2017-01-01T21:07:49+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "GGG\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Gavin G Gordon",
+                "email": "support@gavingordon.com",
+                "homepage": "https://gavingordon.com",
+                "role": "Developer"
+            }
+        ],
+        "description": "A PHP class to transcribe English words into their IPA equivalent.",
+        "homepage": "http://phonetictranscriber.gavingordon.com",
+        "keywords": [
+            "International Phonetic Alphabet",
+            "Transcription",
+            "british",
+            "communication",
+            "educational",
+            "english",
+            "ipa",
+            "language",
+            "linguistics",
+            "php",
+            "pronounciation",
+            "transcribe",
+            "translation",
+            "v1.0.0"
+        ]
+    }
+]
