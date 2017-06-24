@@ -11,7 +11,7 @@
 			display: none;
 			background: #f1f3f7;
 			padding: 10px;
-			font-family: Helvetica, Gadget, sans-serif;
+			font-family: Menlo;
 			font-size: 18px;
 		    word-spacing: 5px;
 		}
