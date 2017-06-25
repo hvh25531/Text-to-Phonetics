@@ -1,15 +1,9 @@
-// My Script
 document.querySelector("#convert_btn").addEventListener("click", convertText);
 
 function convertText(){
 
   var input_text = document.getElementById("input_text").value;
   var output_dialect = document.querySelector('.output_dialect:checked').value;
-  
-  /*var data = JSON.stringify({
-    input_text: input_text,
-    output_dialect: output_dialect
-  });*/
 
   var data = JSON.stringify({
     id: "",
@@ -23,15 +17,25 @@ function convertText(){
     xhr.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
 
-        var html = JSON.parse(xhr.responseText).result;
-
+        var res = JSON.parse(xhr.responseText).result;
         // RegExp
-        var patt = /<span class="transcr">(.+)?<\/span>/;
-        html_filtered = patt.exec(html);
-        //console.log(html_filtered);
+        var patt = /<span class="transcr">(.+)?<\/span>/gi;
+        var res_filtered_array = res.match(patt);
+        var html = res_filtered_array.join('<br>');
         
-        document.getElementById("ipa_result").style.display = 'block';
-        document.getElementById("ipa_result").innerHTML = html_filtered[0];
+        var ipa_result = document.getElementById("ipa_result");
+        ipa_result.style.display = 'block';
+        ipa_result.innerHTML = html;
+
+        var show_hide = document.getElementById("show_hide");
+        show_hide.style.display = 'block';
+        show_hide.onclick = function(){
+          if (ipa_result.style.display == 'block'){
+            ipa_result.style.display = 'none';
+          } else {
+            ipa_result.style.display = 'block';
+          }
+        }
       }
     };
 
@@ -40,9 +44,7 @@ function convertText(){
   }
 };
 
-// End My Script
-
-if (document.querySelector('#play')) {
+if (document.querySelector('#speak')) {
   var synth = window.speechSynthesis;
 
   var inputForm = document.querySelector('form');
@@ -56,13 +58,13 @@ if (document.querySelector('#play')) {
 
   var voices = [];
 
-  inputForm.onsubmit = function(event) {
+  /*inputForm.onsubmit = function(event) {
     event.preventDefault();
 
-    speak();
+    _speak();
 
     inputTxt.blur();
-  }
+  }*/
 
   pitch.onmousemove = function() {
     pitchValue.textContent = pitch.value;
@@ -72,6 +74,10 @@ if (document.querySelector('#play')) {
     rateValue.textContent = rate.value;
   }
 
+  window.onload = function(){
+    synth.cancel();
+  };
+
 }
 
 var output_dialects = document.forms["ipaForm"].elements["output_dialect"];
@@ -79,7 +85,7 @@ var output_dialects = document.forms["ipaForm"].elements["output_dialect"];
 for(var i = 0; i < output_dialects.length; i++) {
   output_dialects[i].onclick = function(){
 
-    if (document.querySelector('#play')) {
+    if (document.querySelector('#speak')) {
       populateVoiceList();
     }
     convertText();
@@ -116,15 +122,18 @@ function isEN(value) {
     return value.lang == 'en-GB';
 }
 
-if (document.querySelector('#play')) {
+if (document.querySelector('#speak')) {
   populateVoiceList();
   if (speechSynthesis.onvoiceschanged !== undefined) {
     speechSynthesis.onvoiceschanged = populateVoiceList;
   }
 }
 
-function speak(){
-  if(inputTxt.value !== ''){
+function _speak(){
+  console.log(synth);
+  if(synth.speaking && !synth.pending) {
+    synth.resume();
+  } else{
     var utterThis = new SpeechSynthesisUtterance(inputTxt.value);
     var selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
     for(i = 0; i < voices.length ; i++) {
@@ -138,6 +147,18 @@ function speak(){
   }
 }
 
+function _pause_resume(){
+  if(!synth.paused) {
+    synth.pause();
+  } else{
+    synth.resume();
+  }
+}
+
+function _stop(){
+  synth.cancel();
+}
+
 /*voiceSelect.onchange = function(){
-  speak();
+  _speak();
 }*/

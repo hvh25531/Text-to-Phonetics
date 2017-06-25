@@ -27,11 +27,25 @@
 			margin-top: 20px;
 		}
 
+		#input_text {
+			min-height: 75px;
+		}
+
 		.transcr {
 			font-family: "Lucida Sans Unicode",  "Lucida Grande", "Lucida Sans", sans-serif;
 			font-size: smaller;
 			color: #666666;
 		}
+
+		#show_hide {
+			display: none;
+			text-align: center;
+			cursor: pointer;
+			font-family: "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", sans-serif;
+		}
+
+		.btn{ margin-bottom: 10px; }
+
 	</style>
 </head>
 <body>
@@ -58,6 +72,7 @@
 								</div>
 
 								<div class="form-group">
+									<p id="show_hide">Show/Hide</p>
 									<div id="ipa_result"></div>
 								</div>
 
@@ -80,11 +95,19 @@
 								<?php endif; ?>
 
 								<div align="center">
-									<button type="button" id="convert_btn" class="btn btn-primary">Show transcription</button>
-									
 									<?php if(!isMobile()) : ?>
-										<button type="submit" id="play" class="btn btn-success">Play</button>
+										<button type="button" id="speak" onclick="_speak()" class="btn btn-success">
+											<i class="glyphicon glyphicon-play"></i>
+										</button>
+										<button type="button" onclick="_pause_resume()" class="btn btn-warning">
+											<i class="glyphicon glyphicon-pause"></i>
+										</button>
+										<button type="button" onclick="_stop()" class="btn btn-danger">
+											<i class="glyphicon glyphicon-stop"></i>
+										</button>
 									<?php endif; ?>
+
+									<button type="button" id="convert_btn" class="btn btn-primary">Show transcription</button>
 								</div>
 							</form>
 						</p>
