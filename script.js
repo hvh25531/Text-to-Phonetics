@@ -42,22 +42,49 @@ function convertText(){
 
 // End My Script
 
+if (document.querySelector('#play')) {
+  var synth = window.speechSynthesis;
 
+  var inputForm = document.querySelector('form');
+  var inputTxt = document.getElementById('input_text');
+  var voiceSelect = document.querySelector('select');
 
-var synth = window.speechSynthesis;
+  var pitch = document.querySelector('#pitch');
+  var pitchValue = document.querySelector('.pitch-value');
+  var rate = document.querySelector('#rate');
+  var rateValue = document.querySelector('.rate-value');
 
-var inputForm = document.querySelector('form');
-// Custom
-var inputTxt = document.getElementById('input_text');
-// End Custom
-var voiceSelect = document.querySelector('select');
+  var voices = [];
 
-var pitch = document.querySelector('#pitch');
-var pitchValue = document.querySelector('.pitch-value');
-var rate = document.querySelector('#rate');
-var rateValue = document.querySelector('.rate-value');
+  inputForm.onsubmit = function(event) {
+    event.preventDefault();
 
-var voices = [];
+    speak();
+
+    inputTxt.blur();
+  }
+
+  pitch.onmousemove = function() {
+    pitchValue.textContent = pitch.value;
+  }
+
+  rate.onmousemove = function() {
+    rateValue.textContent = rate.value;
+  }
+
+}
+
+var output_dialects = document.forms["ipaForm"].elements["output_dialect"];
+
+for(var i = 0; i < output_dialects.length; i++) {
+  output_dialects[i].onclick = function(){
+
+    if (document.querySelector('#play')) {
+      populateVoiceList();
+    }
+    convertText();
+  };
+}
 
 function populateVoiceList() {
   voices = synth.getVoices();
@@ -82,27 +109,18 @@ function populateVoiceList() {
   voiceSelect.selectedIndex = selectedIndex;
 }
 
-// Custom
-var output_dialects = document.forms["ipaForm"].elements["output_dialect"];
-
-for(var i = 0; i < output_dialects.length; i++) {
-  output_dialects[i].onclick = function(){
-    populateVoiceList();
-    convertText();
-  };
-}
-
 function isEN(value) {
   if (output_dialects.value == 'American')
     return value.lang == 'en-US';
   else
     return value.lang == 'en-GB';
 }
-// End Custom
 
-populateVoiceList();
-if (speechSynthesis.onvoiceschanged !== undefined) {
-  speechSynthesis.onvoiceschanged = populateVoiceList;
+if (document.querySelector('#play')) {
+  populateVoiceList();
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
 }
 
 function speak(){
@@ -118,22 +136,6 @@ function speak(){
     utterThis.rate = rate.value;
     synth.speak(utterThis);
   }
-}
-
-inputForm.onsubmit = function(event) {
-  event.preventDefault();
-
-  speak();
-
-  inputTxt.blur();
-}
-
-pitch.onmousemove = function() {
-  pitchValue.textContent = pitch.value;
-}
-
-rate.onmousemove = function() {
-  rateValue.textContent = rate.value;
 }
 
 /*voiceSelect.onchange = function(){

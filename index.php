@@ -1,3 +1,6 @@
+<?php
+	include( __DIR__ . '/detectmobilebrowser.php' );
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,6 +61,7 @@
 									<div id="ipa_result"></div>
 								</div>
 
+								<?php if(isMobile()) : ?>
 								<div class="form-group">
 									<label for="rate">Rate:</label>
 									<span class="rate-value">1</span>
@@ -73,9 +77,13 @@
 								<div class="form-group">
 									<select class="form-control"></select>
 								</div>
+								<?php endif; ?>
 
 								<button type="button" id="convert_btn" class="btn btn-primary">Show transcription</button>
+								
+								<?php if(isMobile()) : ?>
 								<button type="submit" id="play" class="btn btn-success">Play</button>
+								<?php endif; ?>
 							</form>
 						</p>
 					</div>
