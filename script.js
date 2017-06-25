@@ -128,11 +128,11 @@ inputForm.onsubmit = function(event) {
   inputTxt.blur();
 }
 
-pitch.onchange = function() {
+pitch.onmousemove = function() {
   pitchValue.textContent = pitch.value;
 }
 
-rate.onchange = function() {
+rate.onmousemove = function() {
   rateValue.textContent = rate.value;
 }
 
