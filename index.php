@@ -46,6 +46,8 @@
 
 		.btn{ margin-bottom: 10px; }
 
+		.contact{ text-align: center; }
+
 	</style>
 </head>
 <body>
@@ -111,6 +113,7 @@
 								</div>
 							</form>
 						</p>
+						<p class="contact">Comments to: hvh25531@gmail.com</p>
 					</div>
 				</div>
 			</div>
