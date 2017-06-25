@@ -5,23 +5,38 @@ function convertText(){
 
   var input_text = document.getElementById("input_text").value;
   var output_dialect = document.querySelector('.output_dialect:checked').value;
-  var data = JSON.stringify({
+  
+  /*var data = JSON.stringify({
     input_text: input_text,
     output_dialect: output_dialect
+  });*/
+
+  var data = JSON.stringify({
+    id: "",
+    method: "transcribe",
+    params: [input_text, output_dialect]
   });
 
   if(input_text != '') {
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "converter.php", true);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send(data);
+    var xhr = new XMLHttpRequest();
 
-    xhttp.onreadystatechange = function() {
+    xhr.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
+
+        var html = JSON.parse(xhr.responseText).result;
+
+        // RegExp
+        var patt = /<span class="transcr">(.+)?<\/span>/;
+        html_filtered = patt.exec(html);
+        //console.log(html_filtered);
+        
         document.getElementById("ipa_result").style.display = 'block';
-        document.getElementById("ipa_result").innerHTML = xhttp.responseText;
+        document.getElementById("ipa_result").innerHTML = html_filtered[0];
       }
     };
+
+    xhr.open("POST", "http://www.phonetizer.com/phonetizer/default/call/jsonrpc");
+    xhr.send(data);
   }
 };
 
@@ -78,7 +93,7 @@ for(var i = 0; i < output_dialects.length; i++) {
 }
 
 function isEN(value) {
-  if (output_dialects.value == 'am')
+  if (output_dialects.value == 'American')
     return value.lang == 'en-US';
   else
     return value.lang == 'en-GB';

@@ -3,7 +3,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>IPA Phonetic Transcription of English Text</title>
+	<meta name="title" content="IPA Phonetic Transcription of English Text" />
+	<meta property="og:title" content="IPA Phonetic Transcription of English Text" />
+	<meta property="og:image" content="img/logo.png" />
+	<link rel="icon" href="/favicon.ico" type="image/x-icon"/>
 	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="common.min.css">
 	<style>
@@ -19,8 +24,10 @@
 			margin-top: 20px;
 		}
 
-		.transcription_missing {
-			color: red;
+		.transcr {
+			font-family: "Lucida Sans Unicode",  "Lucida Grande", "Lucida Sans", sans-serif;
+			font-size: smaller;
+			color: #666666;
 		}
 	</style>
 </head>
@@ -41,10 +48,10 @@
 								</div>
 
 								<div class="form-group">
-									<label for="am">American</label>
-									<input class="output_dialect" type="radio" name="output_dialect" value="am" checked>
-									<label for="br">British</label>
-									<input class="output_dialect" type="radio" name="output_dialect" value="br">
+									<label for="American">American</label>
+									<input class="output_dialect" type="radio" name="output_dialect" value="American" checked>
+									<label for="British">British</label>
+									<input class="output_dialect" type="radio" name="output_dialect" value="British">
 								</div>
 
 								<div class="form-group">
