@@ -130,7 +130,6 @@ if (document.querySelector('#speak')) {
 }
 
 function _speak(){
-  console.log(synth);
   if(synth.speaking && !synth.pending) {
     synth.resume();
   } else{
