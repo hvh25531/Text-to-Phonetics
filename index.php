@@ -79,11 +79,13 @@
 								</div>
 								<?php endif; ?>
 
-								<button type="button" id="convert_btn" class="btn btn-primary">Show transcription</button>
-								
-								<?php if(!isMobile()) : ?>
-								<button type="submit" id="play" class="btn btn-success">Play</button>
-								<?php endif; ?>
+								<div align="center">
+									<button type="button" id="convert_btn" class="btn btn-primary">Show transcription</button>
+									
+									<?php if(!isMobile()) : ?>
+										<button type="submit" id="play" class="btn btn-success">Play</button>
+									<?php endif; ?>
+								</div>
 							</form>
 						</p>
 					</div>
