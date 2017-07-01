@@ -1,3 +1,19 @@
+showImage();
+
+function showImage(){
+  document.querySelector(".contact").addEventListener("dblclick", function(){
+    if (window.matchMedia("(min-width: 667px)").matches){
+      document.querySelector("#ascii_img").style.display = 'block';
+    }
+
+    window.onresize = function(){
+      if (window.matchMedia("(max-width: 666px)").matches){
+        document.querySelector("#ascii_img").style.display = 'none';
+      }
+    };
+  });
+}
+
 document.querySelector("#convert_btn").addEventListener("click", convertText);
 
 function convertText(){
