@@ -55,7 +55,7 @@ function convertText(){
       }
     };
 
-    xhr.open("POST", "/fetchData.php");
+    xhr.open("POST", "https://www.phonetizer.com/phonetizer/default/call/jsonrpc");
     xhr.send(data);
   }
 };
