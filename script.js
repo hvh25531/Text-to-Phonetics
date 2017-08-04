@@ -55,11 +55,7 @@ function convertText(){
       }
     };
 
-    xhr.open("POST", "http://www.phonetizer.com/phonetizer/default/call/jsonrpc");
-    xhr.setRequestHeader("Host", "www.phonetizer.com");
-    xhr.setRequestHeader("Origin", "https://www.phonetizer.com");
-    xhr.setRequestHeader("X-Qooxdoo-Response-Type", "application/json");
-    xhr.setRequestHeader("Referer", "https://www.phonetizer.com/ui");
+    xhr.open("POST", "/fetchData.php");
     xhr.send(data);
   }
 };
